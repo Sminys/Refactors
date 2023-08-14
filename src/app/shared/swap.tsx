@@ -3,15 +3,31 @@
 import { useState } from 'react';
 import cn from 'classnames';
 import Button from '@/components/ui/button';
+{
+  /*button Design*/
+}
 import CoinInput from '@/components/ui/coin-input';
+{
+  /*Input Design*/
+}
 import TransactionInfo from '@/components/ui/transaction-info';
+{
+  /*info Design*/
+}
 import { SwapIcon } from '@/components/icons/swap-icon';
+{
+  /*Icon Design*/
+}
 import Trade from '@/components/ui/trade';
 
 const SwapPage = () => {
   let [toggleCoin, setToggleCoin] = useState(false);
+  {
+    /*Switching Button Props*/
+  }
   return (
     <>
+      {/*Trade Components*/}
       <Trade>
         <div className="mb-5 border-b border-dashed border-gray-200 pb-5 dark:border-gray-800 xs:mb-7 xs:pb-6">
           <div
@@ -20,13 +36,16 @@ const SwapPage = () => {
               toggleCoin ? 'flex-col-reverse' : 'flex-col'
             )}
           >
+            {/*first coin ammount input*/}
             <CoinInput
               label={'From'}
               exchangeRate={0.0}
               defaultCoinIndex={0}
               getCoinValue={(data) => console.log('From coin value:', data)}
             />
+
             <div className="absolute left-1/2 top-1/2 z-[1] -ml-4 -mt-4 rounded-full bg-white shadow-large dark:bg-gray-600">
+              {/*Switching button*/}
               <Button
                 size="mini"
                 color="gray"
@@ -37,6 +56,8 @@ const SwapPage = () => {
                 <SwapIcon className="h-auto w-3" />
               </Button>
             </div>
+
+            {/*Second coin ammount input*/}
             <CoinInput
               label={'To'}
               exchangeRate={0.0}
@@ -45,6 +66,8 @@ const SwapPage = () => {
             />
           </div>
         </div>
+
+        {/*Swap Information*/}
         <div className="flex flex-col gap-4 xs:gap-[18px]">
           <TransactionInfo label={'Min. Received'} />
           <TransactionInfo label={'Rate'} />
@@ -53,6 +76,8 @@ const SwapPage = () => {
           <TransactionInfo label={'Network Fee'} />
           <TransactionInfo label={'Criptic Fee'} />
         </div>
+
+        {/*Swap button*/}
         <Button
           size="large"
           shape="rounded"

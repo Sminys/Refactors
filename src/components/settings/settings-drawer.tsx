@@ -9,15 +9,10 @@ import { Transition } from '@/components/ui/transition';
 import Button from '@/components/ui/button';
 import { RadioGroup } from '@/components/ui/radio-group';
 import Scrollbar from '@/components/ui/scrollbar';
-import { useLocalStorage } from '@/lib/hooks/use-local-storage';
-import { useDirection } from '@/lib/hooks/use-direction';
-import { useThemeColor } from '@/lib/hooks/use-theme-color';
 import { useSettingsDrawer } from '@/components/settings/settings-context';
 import { Close } from '@/components/icons/close';
 import { Sun } from '@/components/icons/sun';
 import { Moon } from '@/components/icons/moon';
-import { LeftAlign } from '@/components/icons/left-align';
-import { RightAlign } from '@/components/icons/right-align';
 import { ModernLayoutIcon } from '@/components/icons/modern-layout-icon';
 import { RetroLayoutIcon } from '@/components/icons/retro-layout-icon';
 import { MinimalLayoutIcon } from '@/components/icons/minimal-layout-icon';
@@ -121,39 +116,6 @@ function ThemeSwitcher() {
   );
 }
 
-// Component: DirectionSwitcher
-function DirectionSwitcher() {
-  const [direction, setDirection] = useLocalStorage('criptic-direction', 'ltr');
-  useDirection(direction ? direction : 'ltr');
-  return (
-    <div className="px-6 pt-8">
-      <h4 className="mb-4 text-sm font-medium text-gray-900 dark:text-white">
-        Direction
-      </h4>
-      <RadioGroup
-        value={direction}
-        onChange={setDirection}
-        className="grid grid-cols-2 gap-5 "
-      >
-        <RadioGroup.Option value="ltr">
-          {({ checked }) => (
-            <SwitcherButton title={'LTR'} checked={checked}>
-              <LeftAlign />
-            </SwitcherButton>
-          )}
-        </RadioGroup.Option>
-        <RadioGroup.Option value="rtl">
-          {({ checked }) => (
-            <SwitcherButton title={'RTL'} checked={checked}>
-              <RightAlign />
-            </SwitcherButton>
-          )}
-        </RadioGroup.Option>
-      </RadioGroup>
-    </div>
-  );
-}
-
 // Component: LayoutSwitcher
 const LayoutIcons: any = {
   [LAYOUT_OPTIONS.MODERN]: <ModernLayoutIcon />,
@@ -224,40 +186,6 @@ function LayoutSwitcher() {
   );
 }
 
-// Component: ColorSwitcher
-function ColorSwitcher() {
-  const [themeColor, setThemeColor] = useLocalStorage(
-    'criptic-color',
-    '#323743'
-  );
-  useThemeColor(themeColor ? themeColor : '#323743');
-  return (
-    <div className="px-6 pt-8">
-      <h4 className="mb-4 text-sm font-medium text-gray-900 dark:text-white">
-        Color
-      </h4>
-      <RadioGroup
-        value={themeColor}
-        onChange={setThemeColor}
-        className="grid grid-cols-3 gap-5 "
-      >
-        {ColorPreset.map((item, index) => (
-          <RadioGroup.Option value={item.value} key={index}>
-            {({ checked }) => (
-              <SwitcherButton title={item.label} checked={checked}>
-                <span
-                  className="h-8 w-8 rounded-full"
-                  style={{ backgroundColor: item.value }}
-                />
-              </SwitcherButton>
-            )}
-          </RadioGroup.Option>
-        ))}
-      </RadioGroup>
-    </div>
-  );
-}
-
 export default function SettingsDrawer() {
   const { isSettingsOpen, closeSettings } = useSettingsDrawer();
   return (
@@ -309,8 +237,6 @@ export default function SettingsDrawer() {
                 <div className="pb-8">
                   <ThemeSwitcher />
                   <LayoutSwitcher />
-                  <DirectionSwitcher />
-                  <ColorSwitcher />
                 </div>
               </Scrollbar>
             </div>

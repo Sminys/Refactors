@@ -6,7 +6,6 @@ import { usePathname, useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import cn from 'classnames';
 import routes from '@/config/routes';
-import Button from '@/components/ui/button';
 import ActiveLink from '@/components/ui/links/active-link';
 import AnchorLink from '@/components/ui/links/anchor-link';
 import { RangeIcon } from '@/components/icons/range-icon';
@@ -27,10 +26,6 @@ const tradeMenu = [
   {
     name: 'Liquidity',
     value: routes.liquidity,
-  },
-  {
-    name: 'Vote',
-    value: routes.vote,
   },
 ];
 
@@ -108,7 +103,7 @@ export default function Trade({ children }: React.PropsWithChildren<{}>) {
               </button>
             </Listbox>
           )}
-          <div className="hidden items-center justify-between text-gray-600 dark:text-gray-400 sm:flex">
+          <div className="item-left hidden text-gray-600 dark:text-gray-400 sm:flex">
             {tradeMenu.map((item) => (
               <ActiveNavLink
                 key={item.name}
@@ -122,19 +117,8 @@ export default function Trade({ children }: React.PropsWithChildren<{}>) {
                 pathname:
                   layout === LAYOUT_OPTIONS.MODERN ? '/' : routes.home + layout,
               }}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5"
-            >
-              Charts
-              <ExportIcon className="h-auto w-2.5" />
-            </AnchorLink>
-            <Button
-              variant="transparent"
-              shape="circle"
-              size="small"
-              className="dark:text-white"
-            >
-              <RangeIcon />
-            </Button>
+              className="item-left inline-flex gap-1.5 px-3 py-1.5"
+            ></AnchorLink>
           </div>
         </nav>
         <AnimatePresence mode={'wait'}>

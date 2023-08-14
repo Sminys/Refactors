@@ -9,8 +9,11 @@
   html {
     @apply bg-body font-body;
     -webkit-tap-highlight-color: transparent;
+    background :
+    url("../images/xrplswap_background.svg")
+    
   }
-
+  
   html.dark {
     @apply bg-dark text-white;
   }

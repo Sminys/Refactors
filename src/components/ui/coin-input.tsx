@@ -6,9 +6,15 @@ import dynamic from 'next/dynamic';
 import { motion, AnimatePresence } from 'framer-motion';
 import cn from 'classnames';
 import { ChevronDown } from '@/components/icons/chevron-down';
+{
+  /*Token List*/
+}
 import { useClickAway } from '@/lib/hooks/use-click-away';
 import { useLockBodyScroll } from '@/lib/hooks/use-lock-body-scroll';
 import { coinList } from '@/data/static/coin-list';
+{
+  /*Token List data*/
+}
 // dynamic import
 const CoinSelectView = dynamic(
   () => import('@/components/ui/coin-select-view')
@@ -50,6 +56,9 @@ export default function CoinInput({
   function handleSelectedCoin(coin: CoinTypes) {
     setSelectedCoin(coin);
     setVisibleCoinList(false);
+    {
+      /*Token List*/
+    }
   }
   return (
     <>
@@ -60,9 +69,9 @@ export default function CoinInput({
         )}
       >
         <div className="min-w-[80px] border-r border-gray-200 p-3 transition-colors duration-200 group-hover:border-gray-900 dark:border-gray-700 dark:group-hover:border-gray-600">
-          <span className="mb-1.5 block text-xs uppercase text-gray-600 dark:text-gray-400">
-            {label}
-          </span>
+          <span className="text-ms mb-2.5 block uppercase text-gray-600 dark:text-gray-400"></span>
+
+          {/*Token List* button*/}
           <button
             onClick={() => setVisibleCoinList(true)}
             className="flex items-center font-medium outline-none dark:text-gray-100"
@@ -72,6 +81,7 @@ export default function CoinInput({
             <ChevronDown className="ltr:ml-1.5 rtl:mr-1.5" />
           </button>
         </div>
+
         <div className="flex flex-1 flex-col text-right">
           <input
             type="text"

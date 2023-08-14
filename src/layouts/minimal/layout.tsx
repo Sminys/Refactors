@@ -3,7 +3,6 @@
 import Logo from '@/components/ui/logo';
 import cn from 'classnames';
 import { FlashIcon } from '@/components/icons/flash';
-import SearchButton from '@/components/search/button';
 import ActiveLink from '@/components/ui/links/active-link';
 import Hamburger from '@/components/ui/hamburger';
 import WalletConnect from '@/components/nft/wallet-connect';
@@ -38,25 +37,10 @@ function NotificationButton() {
 }
 
 function HeaderRightArea() {
-  const isMounted = useIsMounted();
-  const breakpoint = useBreakpoint();
   const { openDrawer, isOpen } = useDrawer();
   return (
     <div className="order-last flex shrink-0 items-center">
-      <div className="ltr:mr-3.5 rtl:ml-3.5 ltr:sm:mr-5 rtl:sm:ml-5 xl:hidden">
-        <SearchButton
-          color="white"
-          className="shadow-main dark:border dark:border-solid dark:border-gray-700 dark:bg-light-dark dark:text-white"
-        />
-      </div>
-
       <div className="hidden gap-6 lg:flex 2xl:gap-8">
-        {isMounted && ['xs', 'sm', 'md', 'lg'].indexOf(breakpoint) == -1 && (
-          <div>
-            <SearchButton variant="transparent" className="dark:text-white" />
-          </div>
-        )}
-        <NotificationButton />
         <WalletConnect />
       </div>
 
@@ -87,21 +71,11 @@ export function Header() {
           : 'h-16 bg-body dark:bg-dark sm:h-24'
       )}
     >
-      <div className="mx-auto flex w-full max-w-[2160px] items-center justify-between">
-        <div className="flex items-center">
-          <div className="hidden lg:mr-6 lg:block xl:hidden">
-            <Hamburger
-              isOpen={isOpen}
-              onClick={() => openDrawer('DRAWER_MENU')}
-              color="white"
-              className="shadow-main dark:border dark:border-solid dark:border-gray-700 dark:bg-light-dark dark:text-white"
-            />
-          </div>
-          <Logo />
-          {isMounted && ['xs', 'sm', 'md', 'lg'].indexOf(breakpoint) == -1 && (
-            <MenuItems />
-          )}
-        </div>
+      <div className=" flex w-full max-w-[2160px] items-center justify-between">
+        <Logo />
+        {isMounted && ['xs', 'sm', 'md', 'lg'].indexOf(breakpoint) == -1 && (
+          <MenuItems />
+        )}
         <HeaderRightArea />
       </div>
     </nav>
